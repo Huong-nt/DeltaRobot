@@ -77,29 +77,6 @@ public class ArduinoControllerMain
         }
     }
 
-    private void SetComPort()
-    {
-        try
-        {
-            string[] ports = SerialPort.GetPortNames();
-            foreach (string port in ports)
-            {
-                currentPort = new SerialPort(port, 9600);
-                if (DetectArduino())
-                {
-                    portFound = true;
-                    break;
-                }
-                else
-                {
-                    portFound = false;
-                }
-            }
-        }
-        catch (Exception e)
-        {
-        }
-    }
     /*
      * Calibrate 
      */
@@ -318,6 +295,21 @@ public class ArduinoControllerMain
         catch (Exception ex)
         {
             portFound = false;
+            return false;
+        }
+    }
+    /*
+     * Close connection
+     */
+    public bool closePort()
+    {
+        try
+        {
+            currentPort.Close();
+            return true;
+        }
+        catch (Exception ex)
+        {
             return false;
         }
     }

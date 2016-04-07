@@ -31,13 +31,26 @@
             this.cbAvailablePorts = new System.Windows.Forms.ComboBox();
             this.btConnect = new System.Windows.Forms.Button();
             this.lbStatus = new System.Windows.Forms.Label();
-            this.tbBrightness = new System.Windows.Forms.TrackBar();
             this.btDisconnect = new System.Windows.Forms.Button();
-            this.lbBrightness = new System.Windows.Forms.Label();
             this.btnTestStepper = new System.Windows.Forms.Button();
             this.lbCopyright = new System.Windows.Forms.Label();
             this.btnCalibrate = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.tbBrightness)).BeginInit();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dir0 = new System.Windows.Forms.CheckBox();
+            this.dir1 = new System.Windows.Forms.CheckBox();
+            this.dir2 = new System.Windows.Forms.CheckBox();
+            this.step0 = new System.Windows.Forms.NumericUpDown();
+            this.step1 = new System.Windows.Forms.NumericUpDown();
+            this.step2 = new System.Windows.Forms.NumericUpDown();
+            this.btnGo = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.step0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.step1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.step2)).BeginInit();
             this.SuspendLayout();
             // 
             // cbAvailablePorts
@@ -68,18 +81,6 @@
             this.lbStatus.TabIndex = 2;
             this.lbStatus.Text = "Status: Disconnected";
             // 
-            // tbBrightness
-            // 
-            this.tbBrightness.Enabled = false;
-            this.tbBrightness.LargeChange = 20;
-            this.tbBrightness.Location = new System.Drawing.Point(15, 90);
-            this.tbBrightness.Maximum = 255;
-            this.tbBrightness.Name = "tbBrightness";
-            this.tbBrightness.Size = new System.Drawing.Size(397, 45);
-            this.tbBrightness.SmallChange = 2;
-            this.tbBrightness.TabIndex = 3;
-            this.tbBrightness.ValueChanged += new System.EventHandler(this.tbBrightness_ValueChanged);
-            // 
             // btDisconnect
             // 
             this.btDisconnect.Enabled = false;
@@ -90,16 +91,6 @@
             this.btDisconnect.Text = "Disconnect";
             this.btDisconnect.UseVisualStyleBackColor = true;
             this.btDisconnect.Click += new System.EventHandler(this.btDisconnect_Click);
-            // 
-            // lbBrightness
-            // 
-            this.lbBrightness.AutoSize = true;
-            this.lbBrightness.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbBrightness.Location = new System.Drawing.Point(12, 74);
-            this.lbBrightness.Name = "lbBrightness";
-            this.lbBrightness.Size = new System.Drawing.Size(68, 15);
-            this.lbBrightness.TabIndex = 8;
-            this.lbBrightness.Text = "Brightness:";
             // 
             // btnTestStepper
             // 
@@ -122,7 +113,7 @@
             // 
             // btnCalibrate
             // 
-            this.btnCalibrate.Location = new System.Drawing.Point(191, 182);
+            this.btnCalibrate.Location = new System.Drawing.Point(300, 182);
             this.btnCalibrate.Name = "btnCalibrate";
             this.btnCalibrate.Size = new System.Drawing.Size(118, 23);
             this.btnCalibrate.TabIndex = 10;
@@ -130,24 +121,157 @@
             this.btnCalibrate.UseVisualStyleBackColor = true;
             this.btnCalibrate.Click += new System.EventHandler(this.btnCalibrate_Click);
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(163, 182);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(118, 23);
+            this.btnBack.TabIndex = 11;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnGo);
+            this.groupBox1.Controls.Add(this.step2);
+            this.groupBox1.Controls.Add(this.step1);
+            this.groupBox1.Controls.Add(this.step0);
+            this.groupBox1.Controls.Add(this.dir2);
+            this.groupBox1.Controls.Add(this.dir1);
+            this.groupBox1.Controls.Add(this.dir0);
+            this.groupBox1.Location = new System.Drawing.Point(15, 76);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(403, 100);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Point";
+            // 
+            // dir0
+            // 
+            this.dir0.AutoSize = true;
+            this.dir0.Location = new System.Drawing.Point(7, 41);
+            this.dir0.Name = "dir0";
+            this.dir0.Size = new System.Drawing.Size(15, 14);
+            this.dir0.TabIndex = 0;
+            this.dir0.UseVisualStyleBackColor = true;
+            // 
+            // dir1
+            // 
+            this.dir1.AutoSize = true;
+            this.dir1.Location = new System.Drawing.Point(127, 41);
+            this.dir1.Name = "dir1";
+            this.dir1.Size = new System.Drawing.Size(15, 14);
+            this.dir1.TabIndex = 1;
+            this.dir1.UseVisualStyleBackColor = true;
+            // 
+            // dir2
+            // 
+            this.dir2.AutoSize = true;
+            this.dir2.Location = new System.Drawing.Point(230, 41);
+            this.dir2.Name = "dir2";
+            this.dir2.Size = new System.Drawing.Size(15, 14);
+            this.dir2.TabIndex = 2;
+            this.dir2.UseVisualStyleBackColor = true;
+            // 
+            // step0
+            // 
+            this.step0.Location = new System.Drawing.Point(7, 61);
+            this.step0.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.step0.Name = "step0";
+            this.step0.Size = new System.Drawing.Size(51, 20);
+            this.step0.TabIndex = 3;
+            // 
+            // step1
+            // 
+            this.step1.Location = new System.Drawing.Point(127, 61);
+            this.step1.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.step1.Name = "step1";
+            this.step1.Size = new System.Drawing.Size(51, 20);
+            this.step1.TabIndex = 4;
+            // 
+            // step2
+            // 
+            this.step2.Location = new System.Drawing.Point(230, 61);
+            this.step2.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.step2.Name = "step2";
+            this.step2.Size = new System.Drawing.Size(51, 20);
+            this.step2.TabIndex = 5;
+            // 
+            // btnGo
+            // 
+            this.btnGo.Location = new System.Drawing.Point(335, 58);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(38, 23);
+            this.btnGo.TabIndex = 12;
+            this.btnGo.Text = "Go";
+            this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Stepper 0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(125, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Stepper 1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(228, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Stepper 2";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 235);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCalibrate);
             this.Controls.Add(this.btnTestStepper);
-            this.Controls.Add(this.lbBrightness);
             this.Controls.Add(this.lbCopyright);
             this.Controls.Add(this.btDisconnect);
-            this.Controls.Add(this.tbBrightness);
             this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.btConnect);
             this.Controls.Add(this.cbAvailablePorts);
             this.Name = "MainForm";
             this.Text = "Delta Robot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.tbBrightness)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.step0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.step1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.step2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,12 +282,22 @@
         private System.Windows.Forms.ComboBox cbAvailablePorts;
         private System.Windows.Forms.Button btConnect;
         private System.Windows.Forms.Label lbStatus;
-        private System.Windows.Forms.TrackBar tbBrightness;
         private System.Windows.Forms.Button btDisconnect;
-        private System.Windows.Forms.Label lbBrightness;
         private System.Windows.Forms.Button btnTestStepper;
         private System.Windows.Forms.Label lbCopyright;
         private System.Windows.Forms.Button btnCalibrate;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnGo;
+        private System.Windows.Forms.NumericUpDown step2;
+        private System.Windows.Forms.NumericUpDown step1;
+        private System.Windows.Forms.NumericUpDown step0;
+        private System.Windows.Forms.CheckBox dir2;
+        private System.Windows.Forms.CheckBox dir1;
+        private System.Windows.Forms.CheckBox dir0;
 
     }
 }

@@ -63,19 +63,11 @@ namespace Arduino_Dimmer
             }
         }
 
-        private void tbBrightness_ValueChanged(object sender, EventArgs e)
-        {
-            if (_status == ArduinoStatus.Connected)
-            {
-                _arduinoController.setData(9, tbBrightness.Value);
-            }
-        }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_status == ArduinoStatus.Connected)
             {
-                _arduinoPort.Close();
+                _arduinoController.closePort();
             }
         }
 
@@ -83,7 +75,7 @@ namespace Arduino_Dimmer
         {
             try
             {
-                _arduinoPort.Close();
+                _arduinoController.closePort();
                 _status = ArduinoStatus.Disconnected;
                 UpdateFormByStatus();
             }
@@ -102,7 +94,6 @@ namespace Arduino_Dimmer
                     lbStatus.Text = "Status: Successfully connected";
                     btConnect.Enabled = false;
                     btDisconnect.Enabled = true;
-                    tbBrightness.Enabled = true;
                     break;
 
                 case ArduinoStatus.Connecting:
@@ -113,7 +104,6 @@ namespace Arduino_Dimmer
                     lbStatus.Text = "Status: Disconnected";
                     btConnect.Enabled = true;
                     btDisconnect.Enabled = false;
-                    tbBrightness.Enabled = false;
                     break;
             }
         }
@@ -121,12 +111,26 @@ namespace Arduino_Dimmer
         private void btnTestStepper_Click(object sender, EventArgs e)
         {
 
-            _arduinoController.setDataStepper(true, 10, true, 10, true, 10);
+            _arduinoController.setDataStepper(true, 200, true, 100, true, 200);
+            _arduinoController.setDataStepper(false, 30, true, 100, true, 200);
+            //_arduinoController.setDataStepper(false, 96, false, 93, true, 147);
         }
 
         private void btnCalibrate_Click(object sender, EventArgs e)
         {
             _arduinoController.calibrate();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            _arduinoController.setDataStepper(false, 200, false, 100, false, 200);
+            _arduinoController.setDataStepper(true, 30, false, 100, false, 200);
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            
+            _arduinoController.setDataStepper(dir0.Checked, (int)step0.Value, dir1.Checked, (int)step1.Value, dir2.Checked, (int)step2.Value);
         }
     }
 }
