@@ -284,7 +284,8 @@ public class ArduinoControllerMain
      */
     public bool initPort(string portName)
     {
-        currentPort = new SerialPort("COM4", 9600);
+
+        currentPort = new SerialPort(portName, 9600);
         try
         {
             currentPort.Open();

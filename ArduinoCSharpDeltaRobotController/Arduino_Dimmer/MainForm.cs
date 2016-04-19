@@ -20,7 +20,7 @@ namespace Arduino_Dimmer
             Disconnected
         }
 
-        private SerialPort _arduinoPort;
+        //private SerialPort _arduinoPort;
         private ArduinoStatus _status;
         private ArduinoControllerMain _arduinoController;
 
@@ -111,8 +111,10 @@ namespace Arduino_Dimmer
         private void btnTestStepper_Click(object sender, EventArgs e)
         {
 
-            _arduinoController.setDataStepper(true, 200, true, 100, true, 200);
-            _arduinoController.setDataStepper(false, 30, true, 100, true, 200);
+            _arduinoController.setDataStepper(false, 20, false, 20, false, 20);
+            _arduinoController.setDataStepper(true, 20, true, 20, true, 20);
+
+            //_arduinoController.setDataStepper(false, 30, true, 100, true, 200);
             //_arduinoController.setDataStepper(false, 96, false, 93, true, 147);
         }
 
