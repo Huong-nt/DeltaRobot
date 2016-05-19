@@ -1,18 +1,36 @@
 #include <AccelStepper.h>
 #include <LiquidCrystal.h>
 
-#define STEPPER_MIN_ANGLE -1.01922088
-#define STEPPER_MAX_ANGLE  1.49077498
-#define STEPPER_STEP_SIZE  0.3473684211
-#define STEPPER_STEP_ZERO  380
-#define STEPPER_STEP_ZERO_0  479
-#define STEPPER_STEP_ZERO_1  429
-#define STEPPER_STEP_ZERO_2  421
+#define STEPPER_MIN_ANGLE     -1.01922088
+#define STEPPER_MAX_ANGLE     1.49077498
+#define STEPPER_STEP_SIZE     0.3473684211
+#define MAX_SPEED             1000.0
+#define MAX_ACCELERATION      2000.0
+#define STEPPER_STEP_ZERO     380
+#define STEPPER_STEP_ZERO_0   562
+#define STEPPER_STEP_ZERO_1   429
+#define STEPPER_STEP_ZERO_2   421
+
+/*
+ * step resolution:
+ * 0 : Full step
+ * 2 : Half step
+ * 4 : Quarter step
+ * 8 : Eighth step
+ * 16: Sixteenth step
+ */
+#define STEP_RESOLUTION 2
 
 
 #define STEPPER_UP 1
 #define STEPPER_DN 0
 #define V_MAX 2000
+
+
+int STEPPER_STEP_ZERO_0_TEMP = 562;
+int STEPPER_STEP_ZERO_1_TEMP = 429;
+int STEPPER_STEP_ZERO_2_TEMP = 421;
+
 typedef struct {
   int index;    // Index of stepper
   int dir;      // direction

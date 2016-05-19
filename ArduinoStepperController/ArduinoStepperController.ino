@@ -22,6 +22,7 @@ void setup(){
   Serial.begin(9600);
   lcd.begin(16, 2);
   lcd.print("Delta robot!");
+  printLCD();
   pinMode(stepPin_0,OUTPUT); 
   pinMode(dirPin_0,OUTPUT);
   pinMode(enbPin_0,OUTPUT);
@@ -42,24 +43,7 @@ void setup(){
 }
 bool checkthis = true;
 void loop(){
-//  steppers[0].dir = 1;
-//  steppers[0].numSteps = 30;
-//  steppers[1].dir = 1;
-//  steppers[1].numSteps = 30;
-//  steppers[2].dir = 1;
-//  steppers[2].numSteps = 30;
-//  if(checkthis) {
-//    move_steppers();
-//    checkthis = false;
-//    Serial.println("Done move stepper");
-//  }
-  
-//  calibrate();
-//  resetCurrentPossition(0);
-//  setEnablePin(HIGH);
-//  while(1) {
-//    Serial.print("");
-//  }
+  printLCD();
   //Read Buffer
   if (Serial.available() == 12) 
   {
@@ -98,25 +82,7 @@ void loop(){
        {
           case 128:
             //Say hello
-            Serial.print("HELLO FROM ARDUINO");
-            break;
-          case 130:
-            //Control stepper motor
-            steppers[0].dir = inputByte_2;
-            steppers[0].numSteps = 2*(inputByte_3 * 256 + inputByte_4);
-            steppers[1].dir = inputByte_5;
-            steppers[1].numSteps = 2*(inputByte_6 * 256 + inputByte_7);
-            steppers[2].dir = inputByte_8;
-            steppers[2].numSteps = 2*(inputByte_9 * 256 + inputByte_10);
-            move_steppers();
-            Serial.print("Done move stepper");
-            break;
-          case 131:
-            //Calibration
-            calibrate();
-            resetCurrentPossition(0);
-            setEnablePin(HIGH); //disable stepper
-            Serial.print("Calibration completed");
+            Serial.print("[HELLO FROM ARDUINO]");
             break;
           case 127:
              //Set PIN and value
@@ -142,6 +108,31 @@ void loop(){
                 break;
             }
             break;
+          case 130:
+            //Control stepper motor
+            steppers[0].dir = inputByte_2;
+            steppers[0].numSteps = STEP_RESOLUTION*(inputByte_3 * 256 + inputByte_4);
+            steppers[1].dir = inputByte_5;
+            steppers[1].numSteps = STEP_RESOLUTION*(inputByte_6 * 256 + inputByte_7);
+            steppers[2].dir = inputByte_8;
+            steppers[2].numSteps = STEP_RESOLUTION*(inputByte_9 * 256 + inputByte_10);
+            move_steppers();
+            printStatus();
+            Serial.print("[Done move stepper]");
+            break;
+          case 131:
+            //Calibration
+            calibrate();
+            resetCurrentPossition(0);
+            setEnablePin(HIGH); //disable stepper
+            Serial.print("[Calibration completed]");
+            printStatus();
+            break;
+          case 132:
+            //disable stepper
+            setEnablePin(HIGH); //disable stepper
+            break;
+            
         } 
         //Clear Message bytes
         inputByte_0 = 0;
@@ -170,10 +161,7 @@ int move_steppers()
   int speed[3];
   float acceleration[3];
   int position[3];
-  //Set direction for each stepper
-  //digitalWrite(dirPin_0, steppers[0].dir);
-  //digitalWrite(dirPin_1, steppers[1].dir);
-  //digitalWrite(dirPin_2, steppers[2].dir);
+  
   //Set periodic for each stepper
   if(steppers[0].dir == 0)
       position[0] = stepper0.currentPosition() - steppers[0].numSteps;
@@ -192,10 +180,10 @@ int move_steppers()
   //Serial.println(maxSteps);
   
   for(int j = 0; j < 3; j++) {
-    Serial.println(steppers[j].numSteps);
-    speed[j] = round(steppers[j].numSteps * 250.0 / maxSteps);
-    acceleration[j] = (steppers[j].numSteps * 1000.0 / maxSteps);
-    Serial.println(speed[j]);
+    //Serial.println(steppers[j].numSteps);
+    speed[j] = round(steppers[j].numSteps * MAX_SPEED / maxSteps);
+    acceleration[j] = (steppers[j].numSteps * MAX_ACCELERATION / maxSteps);
+    //Serial.println(speed[j]);
     
   }
   stepper0.setAcceleration(acceleration[0]);
@@ -217,6 +205,7 @@ int move_steppers()
   }
 
   resetVariable();
+  printLCD();
   return 1;
 }
 
@@ -243,7 +232,8 @@ int getMaxSteps(stepper a, stepper b, stepper c)
       return c.numSteps;
   }
 }
-void setEnablePin (bool value) {
+
+void setEnablePin (bool value) {  //value = HIGH: disable, value = LOW: enable 
   digitalWrite(enbPin_0, value);
   digitalWrite(enbPin_1, value);
   digitalWrite(enbPin_2, value);
@@ -264,9 +254,9 @@ void calibrate() {
     for(int i = 0; i < 3; i++) {
       steppers[i] = getStatusStepperByPotentiometterValue(i,value[i]);
     }
-    printStatus();
+    //printStatus();
     move_steppers();
-    printStatus();
+    //printStatus();
     //delay(2000);
     //check status of stepper
     boolean pass = true;
@@ -305,7 +295,7 @@ stepper getStatusStepperByPotentiometterValue(int stepperNo,int value) {
   //Serial.println(diff);
   double angle = (double)(diff * 300.0) / 1024.0;
   //Serial.println(angle);
-  tmp.numSteps = round(angle / STEPPER_STEP_SIZE)*2;
+  tmp.numSteps = round(angle / STEPPER_STEP_SIZE)*STEP_RESOLUTION;
   
   //Serial.println(tmp.dir);
   //Serial.println(tmp.numSteps);
@@ -320,9 +310,25 @@ void printStatus() {
   value[2] = analogRead(A3);
   String tmp = "Status:" ;
   for (int i = 0; i < 3; i++) {
-    tmp = tmp + value[i] + ":";
+    if(i != 2) tmp = tmp + value[i] + ":";
+    else tmp = tmp + value[i];
+  }
+  tmp = "[" + tmp + "]";
+  Serial.print(tmp);
+}
+
+void printLCD() {
+  int value[3];
+  value[0] = analogRead(A1);
+  value[1] = analogRead(A2);
+  value[2] = analogRead(A3);
+  String tmp = "" ;
+  for (int i = 0; i < 3; i++) {
+    if(i != 2) tmp = tmp + value[i] + ":";
+    else tmp = tmp + value[i];
   }
   tmp = "(" + tmp + ")";
-  Serial.println(tmp);
+  lcd.setCursor(0, 1);
+  lcd.print(tmp);
 }
 

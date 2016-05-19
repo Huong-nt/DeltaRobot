@@ -32,10 +32,10 @@
             this.btConnect = new System.Windows.Forms.Button();
             this.lbStatus = new System.Windows.Forms.Label();
             this.btDisconnect = new System.Windows.Forms.Button();
-            this.btnTestStepper = new System.Windows.Forms.Button();
+            this.btnTest1 = new System.Windows.Forms.Button();
             this.lbCopyright = new System.Windows.Forms.Label();
             this.btnCalibrate = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
+            this.btnTest2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,6 +52,10 @@
             this.numZ = new System.Windows.Forms.NumericUpDown();
             this.numY = new System.Windows.Forms.NumericUpDown();
             this.numX = new System.Windows.Forms.NumericUpDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnStabityTest1 = new System.Windows.Forms.Button();
+            this.btnStabityTest2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.step2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.step1)).BeginInit();
@@ -60,6 +64,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numX)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbAvailablePorts
@@ -101,20 +107,20 @@
             this.btDisconnect.UseVisualStyleBackColor = true;
             this.btDisconnect.Click += new System.EventHandler(this.btDisconnect_Click);
             // 
-            // btnTestStepper
+            // btnTest1
             // 
-            this.btnTestStepper.Location = new System.Drawing.Point(15, 235);
-            this.btnTestStepper.Name = "btnTestStepper";
-            this.btnTestStepper.Size = new System.Drawing.Size(118, 23);
-            this.btnTestStepper.TabIndex = 9;
-            this.btnTestStepper.Text = "Test Stepper";
-            this.btnTestStepper.UseVisualStyleBackColor = true;
-            this.btnTestStepper.Click += new System.EventHandler(this.btnTestStepper_Click);
+            this.btnTest1.Location = new System.Drawing.Point(114, 11);
+            this.btnTest1.Name = "btnTest1";
+            this.btnTest1.Size = new System.Drawing.Size(118, 23);
+            this.btnTest1.TabIndex = 9;
+            this.btnTest1.Text = "Test 1";
+            this.btnTest1.UseVisualStyleBackColor = true;
+            this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
             // 
             // lbCopyright
             // 
             this.lbCopyright.AutoSize = true;
-            this.lbCopyright.Location = new System.Drawing.Point(290, 266);
+            this.lbCopyright.Location = new System.Drawing.Point(333, 411);
             this.lbCopyright.Name = "lbCopyright";
             this.lbCopyright.Size = new System.Drawing.Size(85, 13);
             this.lbCopyright.TabIndex = 7;
@@ -122,7 +128,7 @@
             // 
             // btnCalibrate
             // 
-            this.btnCalibrate.Location = new System.Drawing.Point(300, 235);
+            this.btnCalibrate.Location = new System.Drawing.Point(12, 235);
             this.btnCalibrate.Name = "btnCalibrate";
             this.btnCalibrate.Size = new System.Drawing.Size(118, 23);
             this.btnCalibrate.TabIndex = 10;
@@ -130,15 +136,15 @@
             this.btnCalibrate.UseVisualStyleBackColor = true;
             this.btnCalibrate.Click += new System.EventHandler(this.btnCalibrate_Click);
             // 
-            // btnBack
+            // btnTest2
             // 
-            this.btnBack.Location = new System.Drawing.Point(163, 235);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(118, 23);
-            this.btnBack.TabIndex = 11;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.btnTest2.Location = new System.Drawing.Point(264, 11);
+            this.btnTest2.Name = "btnTest2";
+            this.btnTest2.Size = new System.Drawing.Size(118, 23);
+            this.btnTest2.TabIndex = 11;
+            this.btnTest2.Text = "Test 2";
+            this.btnTest2.UseVisualStyleBackColor = true;
+            this.btnTest2.Click += new System.EventHandler(this.btnTest2_Click);
             // 
             // groupBox1
             // 
@@ -348,16 +354,57 @@
             this.numX.Size = new System.Drawing.Size(64, 20);
             this.numX.TabIndex = 0;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnTest1);
+            this.groupBox2.Controls.Add(this.btnTest2);
+            this.groupBox2.Location = new System.Drawing.Point(15, 264);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(404, 40);
+            this.groupBox2.TabIndex = 14;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Accuracy test";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnStabityTest1);
+            this.groupBox3.Controls.Add(this.btnStabityTest2);
+            this.groupBox3.Location = new System.Drawing.Point(14, 327);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(404, 40);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Stability test";
+            // 
+            // btnStabityTest1
+            // 
+            this.btnStabityTest1.Location = new System.Drawing.Point(114, 11);
+            this.btnStabityTest1.Name = "btnStabityTest1";
+            this.btnStabityTest1.Size = new System.Drawing.Size(118, 23);
+            this.btnStabityTest1.TabIndex = 9;
+            this.btnStabityTest1.Text = "Test 1";
+            this.btnStabityTest1.UseVisualStyleBackColor = true;
+            this.btnStabityTest1.Click += new System.EventHandler(this.btnStabityTest1_Click);
+            // 
+            // btnStabityTest2
+            // 
+            this.btnStabityTest2.Location = new System.Drawing.Point(264, 11);
+            this.btnStabityTest2.Name = "btnStabityTest2";
+            this.btnStabityTest2.Size = new System.Drawing.Size(118, 23);
+            this.btnStabityTest2.TabIndex = 11;
+            this.btnStabityTest2.Text = "Test 2";
+            this.btnStabityTest2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 291);
+            this.ClientSize = new System.Drawing.Size(430, 433);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpDest);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCalibrate);
-            this.Controls.Add(this.btnTestStepper);
             this.Controls.Add(this.lbCopyright);
             this.Controls.Add(this.btDisconnect);
             this.Controls.Add(this.lbStatus);
@@ -375,6 +422,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numX)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -386,10 +435,10 @@
         private System.Windows.Forms.Button btConnect;
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.Button btDisconnect;
-        private System.Windows.Forms.Button btnTestStepper;
+        private System.Windows.Forms.Button btnTest1;
         private System.Windows.Forms.Label lbCopyright;
         private System.Windows.Forms.Button btnCalibrate;
-        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnTest2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -406,6 +455,10 @@
         private System.Windows.Forms.NumericUpDown numZ;
         private System.Windows.Forms.NumericUpDown numY;
         private System.Windows.Forms.NumericUpDown numX;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnStabityTest1;
+        private System.Windows.Forms.Button btnStabityTest2;
 
     }
 }

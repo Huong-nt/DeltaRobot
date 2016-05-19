@@ -20,29 +20,6 @@ public class ArduinoControllerMain
     {
 
     }
-    private void SetComPort()
-    {
-        try
-        {
-            string[] ports = SerialPort.GetPortNames();
-            foreach (string port in ports)
-            {
-                currentPort = new SerialPort(port, 9600);
-                if (DetectArduino())
-                {
-                    portFound = true;
-                    break;
-                }
-                else
-                {
-                    portFound = false;
-                }
-            }
-        }
-        catch (Exception e)
-        {
-        }
-    }
     /*
      * Set value for pin 
      */
