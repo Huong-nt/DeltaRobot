@@ -120,7 +120,7 @@
             // lbCopyright
             // 
             this.lbCopyright.AutoSize = true;
-            this.lbCopyright.Location = new System.Drawing.Point(333, 411);
+            this.lbCopyright.Location = new System.Drawing.Point(333, 382);
             this.lbCopyright.Name = "lbCopyright";
             this.lbCopyright.Size = new System.Drawing.Size(85, 13);
             this.lbCopyright.TabIndex = 7;
@@ -399,7 +399,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 433);
+            this.ClientSize = new System.Drawing.Size(430, 396);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpDest);

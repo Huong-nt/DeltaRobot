@@ -268,7 +268,7 @@ void calibrate() {
       if(i == 0) zero_value = STEPPER_STEP_ZERO_0;
       else if(i == 1) zero_value = STEPPER_STEP_ZERO_1;
       else zero_value = STEPPER_STEP_ZERO_2;
-      if(abs(value[i] - zero_value) > 3) {
+      if(abs(value[i] - zero_value) > 2) {
         pass = false;
         Serial.println("false");
       }

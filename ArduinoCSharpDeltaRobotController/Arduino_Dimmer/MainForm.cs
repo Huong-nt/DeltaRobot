@@ -141,8 +141,22 @@ namespace Arduino_Dimmer
 
         private void btnTest2_Click(object sender, EventArgs e)
         {
-            gotoPoint(80, 0, -270);
-            gotoPoint(-80, 0, -270);
+            int z = -290;
+            for (int i = 0; i < 3; i++)
+            {
+                gotoPoint(0, 40, z);
+                gotoPoint(20, 20, z);
+                gotoPoint(40, 40, z);
+                gotoPoint(40, 0, z);
+                gotoPoint(20, -20, z);
+                gotoPoint(40, -40, z);
+                gotoPoint(0, -40, z);
+                gotoPoint(-20, -20, z);
+                gotoPoint(-40, -40, z);
+                gotoPoint(-40, 0, z);
+                gotoPoint(-20, 20, z);
+                gotoPoint(-40, 40, z);
+            }
         }
 
         private void btnCalibrate_Click(object sender, EventArgs e)
@@ -206,7 +220,8 @@ namespace Arduino_Dimmer
 
         private void btnStabityTest1_Click(object sender, EventArgs e)
         {
-
+            gotoPoint(80, 0, -270);
+            gotoPoint(-80, 0, -270);
         }
     }
 }
