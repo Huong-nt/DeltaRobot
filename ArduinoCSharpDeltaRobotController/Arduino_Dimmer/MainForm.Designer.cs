@@ -56,6 +56,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnStabityTest1 = new System.Windows.Forms.Button();
             this.btnStabityTest2 = new System.Windows.Forms.Button();
+            this.btnTestKinematics = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.step2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.step1)).BeginInit();
@@ -395,11 +396,22 @@
             this.btnStabityTest2.Text = "Test 2";
             this.btnStabityTest2.UseVisualStyleBackColor = true;
             // 
+            // btnTestKinematics
+            // 
+            this.btnTestKinematics.Location = new System.Drawing.Point(211, 235);
+            this.btnTestKinematics.Name = "btnTestKinematics";
+            this.btnTestKinematics.Size = new System.Drawing.Size(118, 23);
+            this.btnTestKinematics.TabIndex = 16;
+            this.btnTestKinematics.Text = "Test Kinematics";
+            this.btnTestKinematics.UseVisualStyleBackColor = true;
+            this.btnTestKinematics.Click += new System.EventHandler(this.btnTestKinematics_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 396);
+            this.Controls.Add(this.btnTestKinematics);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.grpDest);
@@ -459,6 +471,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnStabityTest1;
         private System.Windows.Forms.Button btnStabityTest2;
+        private System.Windows.Forms.Button btnTestKinematics;
 
     }
 }

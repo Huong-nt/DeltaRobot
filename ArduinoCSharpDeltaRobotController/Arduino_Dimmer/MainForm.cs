@@ -117,26 +117,29 @@ namespace Arduino_Dimmer
 
         private void btnTest1_Click(object sender, EventArgs e)
         {
-            int bound = 40;
-            int sleeptime = 100;
-
             btnCalibrate_Click(null, null);
+            int bound = 20;
             gotoPoint(0, bound, -270);
-            
-            gotoPoint(0, 0, -270);
-            
+            gotoPoint(0, 0, -270);  
             gotoPoint(0, -bound, -270);
-            
             gotoPoint(0, 0, -270);
-            
             gotoPoint(bound, 0, -270);
-            
             gotoPoint(0, 0, -270);
-            
             gotoPoint(-bound, 0, -270);
-            
             gotoPoint(0, 0, -270);
 
+            bound = 40;
+            gotoPoint(0, bound, -270);
+            gotoPoint(0, -bound, -270);
+            gotoPoint(bound, 0, -270);
+            gotoPoint(-bound, 0, -270);
+            gotoPoint(0, 0, -270);
+            bound = 80;
+            gotoPoint(0, bound, -270);
+            gotoPoint(0, -bound, -270);
+            gotoPoint(bound, 0, -270);
+            gotoPoint(-bound, 0, -270);
+            gotoPoint(0, 0, -270);
         }
 
         private void btnTest2_Click(object sender, EventArgs e)
@@ -210,7 +213,7 @@ namespace Arduino_Dimmer
             int numsteps0 = (int)Math.Round((current_theta0 - theta0) / buocnho);
             int numsteps1 = (int)Math.Round((current_theta1 - theta1) / buocnho);
             int numsteps2 = (int)Math.Round((current_theta2 - theta2) / buocnho);
-            Console.Out.WriteLine("Theta:(" + theta0 + "," + theta1 + "," + theta2 + ")");
+            //Console.Out.WriteLine("Theta:(" + theta0 + "," + theta1 + "," + theta2 + ")");
             _arduinoController.setDataStepper(
                 numsteps0 > 0 ? true : false, Math.Abs(numsteps0),
                 numsteps1 > 0 ? true : false, Math.Abs(numsteps1),
@@ -220,8 +223,18 @@ namespace Arduino_Dimmer
 
         private void btnStabityTest1_Click(object sender, EventArgs e)
         {
-            gotoPoint(80, 0, -270);
-            gotoPoint(-80, 0, -270);
+            for (int i = 0; i < 10; i++)
+            {
+                gotoPoint(80, 0, -270);
+
+                gotoPoint(-80, 0, -270);
+            }
+                
+        }
+
+        private void btnTestKinematics_Click(object sender, EventArgs e)
+        {
+            _arduinoController.testKinematics();
         }
     }
 }

@@ -158,6 +158,55 @@ public class ArduinoControllerMain
     }
 
     /*
+     * test kinematics 
+     */
+    public bool testKinematics()
+    {
+        try
+        {
+            byte[] buffer = new byte[12];
+            buffer[0] = Convert.ToByte(16);
+            buffer[1] = Convert.ToByte(133); //code 133
+            buffer[2] = Convert.ToByte(0);
+            buffer[3] = Convert.ToByte(0);
+            buffer[4] = Convert.ToByte(0);
+            buffer[5] = Convert.ToByte(0);
+            buffer[6] = Convert.ToByte(0);
+            buffer[7] = Convert.ToByte(0);
+            buffer[8] = Convert.ToByte(0);
+            buffer[9] = Convert.ToByte(0);
+            buffer[10] = Convert.ToByte(0);
+            buffer[11] = Convert.ToByte(4);
+            int intReturnASCII = 0;
+            char charReturnValue = (Char)intReturnASCII;
+            currentPort.Open();
+            currentPort.Write(buffer, 0, 12);
+            Thread.Sleep(1500);
+            int count = currentPort.BytesToRead;
+            string returnMessage = "";
+            while (count > 0)
+            {
+                intReturnASCII = currentPort.ReadByte();
+                returnMessage = returnMessage + Convert.ToChar(intReturnASCII);
+                count--;
+            }
+            currentPort.Close();
+            if (returnMessage.Contains("Move completed"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    /*
      * Get value from pin
      */
     public bool getData(int pinNumber, out string data)

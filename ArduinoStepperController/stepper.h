@@ -7,8 +7,8 @@
 #define MAX_SPEED             1000.0
 #define MAX_ACCELERATION      2000.0
 #define STEPPER_STEP_ZERO     380
-#define STEPPER_STEP_ZERO_0   562
-#define STEPPER_STEP_ZERO_1   429
+#define STEPPER_STEP_ZERO_0   563
+#define STEPPER_STEP_ZERO_1   441
 #define STEPPER_STEP_ZERO_2   421
 
 /*
